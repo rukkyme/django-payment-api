@@ -9,3 +9,7 @@ requests==2.32.3
 sqlparse==0.5.3
 typing_extensions==4.13.2
 urllib3==2.4.0
+Django==5.2.1  # Use your actual Django version
+gunicorn==23.0.0 # Or uwsgi
+dj-database-url==2.3.0 # Add this
+psycopg2-binary==2.9.10
