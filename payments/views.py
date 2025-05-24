@@ -4,6 +4,7 @@ import json
 
 import requests
 from django.conf import settings
+from decouple import config
 
 from rest_framework import status       #imports the status module from DRF. shortcuts for HTTP status code. e.g HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
 from rest_framework.response import Response        #imports the Response class from DRF. allows you to return data(E.g dictionaries, lists) which DRF renders into JSON for the API client
@@ -50,13 +51,20 @@ def create_payment(request):
     serializer = PaymentSerializer(data=request.data)
     if serializer.is_valid():
         payment = serializer.save()
-
+        
+        
         # Send data to Paystack
+        headers = {
+            "Authorization": f"Bearer {config('PAYSTACK_SECRET_KEY')}",
+            "Content-Type": "application/json"
+        }
+
+        '''
         headers = {
             "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
             "Content-Type": "application/json"
         }
-
+        '''
         data = {
             "email": payment.customer_email,
             "amount": int(payment.amount * 100),  # Paystack uses kobo
