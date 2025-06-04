@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view      #imports a decorator turns r
 from .models import Payment
 from .serializers import PaymentSerializer
 
-""" All of these works for the endpoints but the customers data is stored in data base and paystack is not integrated with the API
+""" All of these works for the endpoints but it is for when the customers data is stored in data base and paystack is not integrated with the API
 #Endpoint for Making Payment.
 @api_view(['POST'])         #Its a decorator telling us that the next fxn is an APIView and should respond only to HTTP POST requests
 def create_payment(request):    #Defines the function to handle incoming requests.
